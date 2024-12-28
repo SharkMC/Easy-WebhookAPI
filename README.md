@@ -18,7 +18,7 @@ This is an API that allows you to easily send webhooks.
 namespace Example;
 
 use pocketmine\plugin\PluginBase;
-use Webhook\Webhook;
+use webhook\Webhook;
 
 class Example extends PluginBase {
     public function onEnable(): void {   
