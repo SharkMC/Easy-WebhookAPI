@@ -21,7 +21,7 @@ use Webhook\Webhook;
 
 class Example extends PluginBase {
     public function onEnable(): void {   
-       Webhook::setWebhookUrl(https://discord.com/api/webhooks/00000");
+        Webhook::setWebhookUrl(https://discord.com/api/webhooks/00000");
         Webhook::setColor("FFFFFF");
         Webhook::setTitle("Webhook");
         Webhook::setContents("This is a Webhook");
