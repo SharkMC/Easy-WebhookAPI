@@ -12,7 +12,7 @@ This is an API that allows you to easily send webhooks.
 
 # example
 
-'''<?php
+```<?php
 
 namespace Example;
 
