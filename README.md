@@ -10,9 +10,10 @@ This is an API that allows you to easily send webhooks.
 6. Use "Webhook::setContents();" to set contents.
 7. Use "Webhook::sendWebhook();" to send a Webhook.
 
-# example
+# Example Code
 
-```<?php
+```
+<?php
 
 namespace Example;
 
