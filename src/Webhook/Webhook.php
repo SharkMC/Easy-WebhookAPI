@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace ShqrkMC;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
 
 class Webhook extends PluginBase {
 
@@ -37,44 +35,26 @@ class Webhook extends PluginBase {
 
     public static function sendWebhook(): void {
         if (isset(self::$webhookUrl)) {
+
             $data = [
-                "webhookUrl" => self::$webhookUrl,
-                "data" => [
-                    "embeds" => [
-                        [
-                            "title" => self::$title,
-                            "description" => self::$contents,
-                            "color" => hexdec(self::$color)
-                        ]
+                "embeds" => [
+                    [
+                        "title" => self::$title,
+                        "description" => self::$contents,
+                        "color" => hexdec(self::$color)
                     ]
                 ]
             ];
 
-            Server::getInstance()->getAsyncPool()->submitTask(new WebhookTask($data));
+            $ch = curl_init(self::$webhookUrl);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+            curl_exec($ch);
+            curl_close($ch);
         }
-    }
-}
-
-class WebhookTask extends AsyncTask {
-
-    private array $data;
-
-    public function __construct(array $data) {
-        $this->data = $data;
-    }
-
-    public function onRun(): void {
-        $webhookUrl = $this->data["webhookUrl"];
-        $payload = $this->data["data"];
-
-        $ch = curl_init($webhookUrl);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
-        curl_exec($ch);
-        curl_close($ch);
     }
 }
