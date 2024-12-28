@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ShqrkMC;
+namespace webhook;
 
 use pocketmine\plugin\PluginBase;
 
