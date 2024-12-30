@@ -1,4 +1,5 @@
 name: WebhookAPI
 main: webhook\Webhook
+author: ShqrkMC
 version: 2.0.0
 api: 5.0.0
