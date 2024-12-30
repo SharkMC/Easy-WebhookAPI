@@ -46,5 +46,7 @@ class WebhookTask extends AsyncTask {
         }
         curl_close($ch);
     }
-    public function onCompletion(): void { $result = $this->getResult(); }
+    public function onCompletion(): void { 
+        $result = $this->getResult();
+    }
 }
