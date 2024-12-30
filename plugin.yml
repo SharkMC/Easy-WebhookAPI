@@ -1,4 +1,3 @@
-
 name: WebhookAPI
 main: webhook\Webhook
 version: 2.0.0
