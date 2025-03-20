@@ -3,7 +3,7 @@ This is an API that allows you to easily send webhooks.
 
 # How to use
 1. Put it in the plugin folder.
-2. Add the "use Webhook\Webhook;" to the files you want to use.
+2. Add the "use webhook\Webhook;" to the files you want to use.
 3. Use "Webhook::setWebhookUrl();" to set the destination.
 4. Use "Webhook::setColor();" to set the color.
 5. Use "Webhook::setTitle();" to set the title.
